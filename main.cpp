@@ -123,7 +123,7 @@ int main(int, char**)
     io.IniFilename = nullptr;
     EMSCRIPTEN_MAINLOOP_BEGIN
 #else
-    while (!glfwWindowShouldClose(window))
+    while (!glfwWindowShouldClose(window) && g_show_main)
 #endif
     {
         // Poll and handle events (inputs, window resize, etc.)
@@ -143,7 +143,7 @@ int main(int, char**)
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-	ui_render();
+		ui_render();
 
         // Rendering
         ImGui::Render();

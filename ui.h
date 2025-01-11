@@ -7,3 +7,5 @@ void ui_tutorials_menu();
 void ui_missions_menu();
 void ui_multiplayer_menu();
 void ui_help_menu();
+
+extern bool g_show_main;

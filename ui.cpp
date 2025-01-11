@@ -1,6 +1,7 @@
 #include "ui.h"
 #include "imgui.h"
 
+bool g_show_main = true;
 static bool g_show_settings = false;
 static bool g_show_tutorials = false;
 static bool g_show_missions = false;
@@ -27,12 +28,10 @@ void ui_render() {
 }
 
 void ui_main_menu() {
-	static bool show_another_window = true;
-
 	ImVec2 window_size = {200, 400};
 	ImGui::SetNextWindowSize(window_size);
 	ImGui::SetNextWindowPos(ImVec2(50, 50));
-	ImGui::Begin("Main menu", &show_another_window, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse);
+	ImGui::Begin("Main menu", &g_show_main, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse);
 
 	ImGui::Text("CSP");
 
@@ -61,6 +60,7 @@ void ui_main_menu() {
 	}
 
 	if(ImGui::Button("Quit", button_size)) {
+		g_show_main = false;
 	}
 
 	ImGui::End();
