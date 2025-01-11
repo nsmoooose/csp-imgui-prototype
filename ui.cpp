@@ -10,13 +10,61 @@ static bool g_show_help = false;
 
 static const float g_window_margin = 50.0f;
 
+static char g_username[50] = "";
+
 static void ui_center_window_with_margin(float margin) {
 	ImVec2 display_size = ImGui::GetIO().DisplaySize;
     ImGui::SetNextWindowPos(ImVec2(margin, margin));
     ImGui::SetNextWindowSize(ImVec2(display_size.x - 2 * margin, display_size.y - 2 * margin));
 }
 
+void ui_theme_gray() {
+	ImGuiStyle& style = ImGui::GetStyle();
+
+	// Set a gray gradient background for the window
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.2f, 0.2f, 0.2f, 1.0f); // Darker gray for window background
+	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);  // Slightly lighter gray for the title bar
+	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f); // Active window title
+
+	// Set button gradient colors
+	style.Colors[ImGuiCol_Button] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);      // Medium gray button color
+	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.6f, 0.6f, 0.6f, 1.0f); // Lighter gray when hovered
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.7f, 0.7f, 0.7f, 1.0f);  // Even lighter gray when active
+
+	// Set the frame background (for input fields, combo boxes, etc.)
+	style.Colors[ImGuiCol_FrameBg] = ImVec4(0.25f, 0.25f, 0.25f, 1.0f);  // Dark gray for frames
+	style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.35f, 0.35f, 0.35f, 1.0f); // Lighter gray for hover
+	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.45f, 0.45f, 0.45f, 1.0f);  // Active state
+
+	// Set text color to white for contrast against the gray background
+	style.Colors[ImGuiCol_Text] = ImVec4(1.0f, 1.0f, 1.0f, 1.0f); // White text
+
+	// Set scrollbar color
+	style.Colors[ImGuiCol_ScrollbarBg] = ImVec4(0.15f, 0.15f, 0.15f, 1.0f);  // Dark gray for scrollbar background
+	style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);    // Medium gray for the scrollbar handle
+	style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.6f, 0.6f, 0.6f, 1.0f); // Lighter gray on hover
+	style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.7f, 0.7f, 0.7f, 1.0f);  // Active gray scrollbar color
+
+	// Set the border color for windows, buttons, and other widgets
+	style.Colors[ImGuiCol_Border] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f); // Slightly dark gray border
+
+	// Set popup background to a darker gray
+	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.18f, 0.18f, 0.18f, 1.0f); // Darker gray for popups
+
+	// Set the selection color in lists, text inputs, etc.
+	style.Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f); // Light gray for selected items
+
+	// Selectable
+    style.Colors[ImGuiCol_Header] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
+    style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.6f, 0.6f, 0.6f, 1.0f);
+    style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
+}
+
 void ui_render() {
+	ui_theme_gray();
+
+	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(10.0f, 10.0f));
+
 	ui_main_menu();
 	if(g_show_settings) {
 		ui_settings_menu();
@@ -33,15 +81,17 @@ void ui_render() {
 	if(g_show_help) {
 		ui_help_menu();
 	}
+
+	ImGui::PopStyleVar();
 }
 
 void ui_main_menu() {
 	ImVec2 window_size = {200, 400};
 	ImGui::SetNextWindowSize(window_size);
 	ImGui::SetNextWindowPos(ImVec2(50, 50));
-	ImGui::Begin("Main menu", &g_show_main, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse);
+	ImGui::Begin("Combat Simulator Project", &g_show_main, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse);
 
-	ImGui::Text("CSP");
+	ImGui::Text("Main menu");
 
 	ImVec2 button_size = { ImGui::GetContentRegionAvail().x, 0 };
 	if (ImGui::Button("Instant action", button_size)) {
@@ -102,6 +152,7 @@ void ui_settings_menu() {
 		ImGui::BeginChild("Content", ImVec2(0, 0), true);
 		switch (selectedTab) {
 		case 0:
+			ImGui::InputText("Username", g_username, sizeof(g_username));
 			break;
 		case 1:
 			break;
