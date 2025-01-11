@@ -8,6 +8,14 @@ static bool g_show_missions = false;
 static bool g_show_multiplayer = false;
 static bool g_show_help = false;
 
+static const float g_window_margin = 50.0f;
+
+static void ui_center_window_with_margin(float margin) {
+	ImVec2 display_size = ImGui::GetIO().DisplaySize;
+    ImGui::SetNextWindowPos(ImVec2(margin, margin));
+    ImGui::SetNextWindowSize(ImVec2(display_size.x - 2 * margin, display_size.y - 2 * margin));
+}
+
 void ui_render() {
 	ui_main_menu();
 	if(g_show_settings) {
@@ -68,8 +76,41 @@ void ui_main_menu() {
 
 void ui_settings_menu() {
 	ImGui::OpenPopup("Settings");
-	if(ImGui::BeginPopupModal("Settings", &g_show_settings)) {
-		ImGui::Text("CSP");
+	ui_center_window_with_margin(g_window_margin);
+	if(ImGui::BeginPopupModal("Settings", &g_show_settings, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
+
+		static int selectedTab = 0; // Track the selected tab
+
+		const char* tabs[] = {
+			"Profile",
+			"User interface",
+			"Display",
+			"Sound",
+		};
+		const int tabCount = IM_ARRAYSIZE(tabs);
+
+		ImGui::BeginChild("Tabs", ImVec2(150, 0), true);
+		for (int i = 0; i < tabCount; i++) {
+			if (ImGui::Selectable(tabs[i], selectedTab == i)) {
+				selectedTab = i;
+			}
+		}
+		ImGui::EndChild();
+
+		ImGui::SameLine();
+
+		ImGui::BeginChild("Content", ImVec2(0, 0), true);
+		switch (selectedTab) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+		ImGui::EndChild();
 
 		ImGui::EndPopup();
 	}
@@ -77,25 +118,27 @@ void ui_settings_menu() {
 
 void ui_tutorials_menu() {
 	ImGui::OpenPopup("Tutorials");
-	if(ImGui::BeginPopupModal("Tutorials", &g_show_tutorials)) {
+	ui_center_window_with_margin(g_window_margin);
+	if(ImGui::BeginPopupModal("Tutorials", &g_show_tutorials, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
 		ImGui::EndPopup();
 	}
 }
 
 void ui_missions_menu() {
 	ImGui::OpenPopup("Missions");
-	if(ImGui::BeginPopupModal("Missions", &g_show_missions)) {
+	ui_center_window_with_margin(g_window_margin);
+	if(ImGui::BeginPopupModal("Missions", &g_show_missions, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
 		ImGui::EndPopup();
 	}
 }
 
 void ui_multiplayer_menu() {
 	ImGui::OpenPopup("Multiplayer");
-	if(ImGui::BeginPopupModal("Multiplayer", &g_show_multiplayer)) {
+	ui_center_window_with_margin(g_window_margin);
+	if(ImGui::BeginPopupModal("Multiplayer", &g_show_multiplayer, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
 		ImGui::EndPopup();
 	}
 }
-
 
 static const char g_help_welcome[] = {
 	"About CSP\n"
@@ -176,12 +219,7 @@ static const char g_help_f16_first[] = {
 
 void ui_help_menu() {
 	ImGui::OpenPopup("Help");
-
-	ImVec2 display_size = ImGui::GetIO().DisplaySize;
-    float margin = 50.0f;
-    ImGui::SetNextWindowPos(ImVec2(margin, margin));
-    ImGui::SetNextWindowSize(ImVec2(display_size.x - 2 * margin, display_size.y - 2 * margin));
-
+	ui_center_window_with_margin(g_window_margin);
 	if(ImGui::BeginPopupModal("Help", &g_show_help, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
 		static int selectedTab = 0; // Track the selected tab
 
