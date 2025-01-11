@@ -85,20 +85,66 @@ void ui_tutorials_menu() {
 void ui_missions_menu() {
 	ImGui::OpenPopup("Missions");
 	if(ImGui::BeginPopupModal("Missions", &g_show_missions)) {
-		ImGui::End();
+		ImGui::EndPopup();
 	}
 }
 
 void ui_multiplayer_menu() {
 	ImGui::OpenPopup("Multiplayer");
 	if(ImGui::BeginPopupModal("Multiplayer", &g_show_multiplayer)) {
-		ImGui::End();
+		ImGui::EndPopup();
 	}
 }
 
 void ui_help_menu() {
 	ImGui::OpenPopup("Help");
-	if(ImGui::BeginPopupModal("Help", &g_show_help)) {
-		ImGui::End();
+
+	ImVec2 display_size = ImGui::GetIO().DisplaySize;
+    float margin = 50.0f;
+    ImGui::SetNextWindowPos(ImVec2(margin, margin));
+    ImGui::SetNextWindowSize(ImVec2(display_size.x - 2 * margin, display_size.y - 2 * margin));
+
+	if(ImGui::BeginPopupModal("Help", &g_show_help, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
+		static int selectedTab = 0; // Track the selected tab
+
+		const char* tabs[] = {
+			"Welcome",
+			"F16 first steps",
+			"Aircraft controls",
+			"View controls",
+			"Mouse",
+			"Joystick",
+		};
+		const int tabCount = IM_ARRAYSIZE(tabs);
+
+		ImGui::BeginChild("Tabs", ImVec2(150, 0), true);
+		for (int i = 0; i < tabCount; i++) {
+			if (ImGui::Selectable(tabs[i], selectedTab == i)) {
+				selectedTab = i;
+			}
+		}
+		ImGui::EndChild();
+
+		ImGui::SameLine();
+
+		ImGui::BeginChild("Content", ImVec2(0, 0), true);
+		ImGui::Text("Content for %s", tabs[selectedTab]);
+		switch (selectedTab) {
+		case 0:
+			ImGui::Text("This is the content for Tab 1.");
+			break;
+		case 1:
+			ImGui::Text("This is the content for Tab 2.");
+			break;
+		case 2:
+			ImGui::Text("This is the content for Tab 3.");
+			break;
+		case 3:
+			ImGui::Text("This is the content for Tab 4.");
+			break;
+		}
+		ImGui::EndChild();
+
+		ImGui::EndPopup();
 	}
 }
