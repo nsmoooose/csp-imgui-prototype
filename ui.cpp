@@ -13,6 +13,8 @@ static const float g_window_margin = 50.0f;
 
 static char g_username[50] = "";
 static float g_sound_volume = 1.0f;
+static char g_server_listen_ip[30] = "0::0";
+static char g_server_listen_port[30] = "3160";
 
 static void ui_center_window_with_margin(float margin) {
 	ImVec2 display_size = ImGui::GetIO().DisplaySize;
@@ -139,6 +141,7 @@ void ui_settings_menu() {
 		const char* tabs[] = {
 			"Profile",
 			"User interface",
+			"Controls",
 			"Display",
 			"Sound",
 		};
@@ -166,6 +169,8 @@ void ui_settings_menu() {
 		case 2:
 			break;
 		case 3:
+			break;
+		case 4:
 			ImGui::SliderFloat("Volume", &g_sound_volume, 0.0f, 1.0f);
 			break;
 		}
@@ -189,6 +194,39 @@ void ui_tutorials_menu() {
 	ImGui::OpenPopup("Tutorials");
 	ui_center_window_with_margin(g_window_margin);
 	if(ImGui::BeginPopupModal("Tutorials", &g_show_tutorials, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
+		static int selectedTab = 0; // Track the selected tab
+
+		const char* tabs[] = {
+			"F16 taking off",
+			"F16 taking landing",
+			"F16 waypoints",
+		};
+		const int tabCount = IM_ARRAYSIZE(tabs);
+
+		ImGui::BeginChild("Tabs", ImVec2(150, 0), true);
+		for (int i = 0; i < tabCount; i++) {
+			if (ImGui::Selectable(tabs[i], selectedTab == i)) {
+				selectedTab = i;
+			}
+		}
+		ImGui::EndChild();
+
+		ImGui::SameLine();
+
+		ImGui::BeginGroup();
+
+		ImGui::BeginChild("Content", ImVec2(0, ImGui::GetContentRegionAvail().y - ImGui::GetFrameHeightWithSpacing()), true);
+		switch (selectedTab) {
+		case 0:
+			break;
+		}
+		ImGui::EndChild();
+
+		if(ImGui::Button("Start")) {
+		}
+
+		ImGui::EndGroup();
+
 		ImGui::EndPopup();
 	}
 }
@@ -197,6 +235,43 @@ void ui_missions_menu() {
 	ImGui::OpenPopup("Missions");
 	ui_center_window_with_margin(g_window_margin);
 	if(ImGui::BeginPopupModal("Missions", &g_show_missions, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
+		static int selectedTab = 0; // Track the selected tab
+
+		const char* tabs[] = {
+			"Land at airfield X",
+			"Incoming bogey",
+			"Bombing run",
+		};
+		const int tabCount = IM_ARRAYSIZE(tabs);
+
+		ImGui::BeginChild("Tabs", ImVec2(150, 0), true);
+		for (int i = 0; i < tabCount; i++) {
+			if (ImGui::Selectable(tabs[i], selectedTab == i)) {
+				selectedTab = i;
+			}
+		}
+		ImGui::EndChild();
+
+		ImGui::SameLine();
+
+		ImGui::BeginGroup();
+
+		ImGui::BeginChild("Content", ImVec2(0, ImGui::GetContentRegionAvail().y - ImGui::GetFrameHeightWithSpacing()), true);
+		switch (selectedTab) {
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		}
+		ImGui::EndChild();
+
+		if(ImGui::Button("Start")) {
+		}
+
+		ImGui::EndGroup();
+
 		ImGui::EndPopup();
 	}
 }
@@ -261,6 +336,8 @@ void ui_multiplayer_menu() {
 			}
 			break;
 		case 1:
+			ImGui::InputText("Listen address", g_server_listen_ip, sizeof(g_server_listen_ip));
+			ImGui::InputText("Listen port", g_server_listen_port, sizeof(g_server_listen_port));
 			ImGui::EndChild();
 			if(ImGui::Button("Start server")) {
 			}
