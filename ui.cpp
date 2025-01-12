@@ -162,16 +162,33 @@ void ui_settings_menu() {
 		ImGui::BeginChild("Content", ImVec2(0, ImGui::GetContentRegionAvail().y - ImGui::GetFrameHeightWithSpacing()), true);
 		switch (selectedTab) {
 		case 0:
-			ImGui::InputText("Username", g_username, sizeof(g_username));
+			ImGui::Text("Username:");
+			ImGui::SetNextItemWidth(-1.0f);
+			ImGui::InputText("##Username", g_username, sizeof(g_username));
 			break;
 		case 1:
+			ImGui::Text("Theme:");
+			ImGui::SetNextItemWidth(-1.0f);
+			// TODO Listbox
+			ImGui::Text("Language:");
+			ImGui::SetNextItemWidth(-1.0f);
+			// TODO Listbox
 			break;
 		case 2:
 			break;
 		case 3:
+			ImGui::Text("Fullscreen:");
+			ImGui::SetNextItemWidth(-1.0f);
+			// TODO Listbox
+
+			ImGui::Text("Window size:");
+			ImGui::SetNextItemWidth(-1.0f);
+			// TODO Listbox
 			break;
 		case 4:
-			ImGui::SliderFloat("Volume", &g_sound_volume, 0.0f, 1.0f);
+			ImGui::Text("Volume:");
+			ImGui::SetNextItemWidth(-1.0f);
+			ImGui::SliderFloat("##Volume", &g_sound_volume, 0.0f, 1.0f);
 			break;
 		}
 		ImGui::EndChild();
@@ -346,8 +363,13 @@ void ui_multiplayer_menu() {
 			}
 			break;
 		case 1:
-			ImGui::InputText("Listen address", g_server_listen_ip, sizeof(g_server_listen_ip));
-			ImGui::InputText("Listen port", g_server_listen_port, sizeof(g_server_listen_port));
+			ImGui::Text("Listen address:");
+			ImGui::SetNextItemWidth(-1.0f);
+			ImGui::InputText("##Listen address", g_server_listen_ip, sizeof(g_server_listen_ip));
+
+			ImGui::Text("Listen port:");
+			ImGui::SetNextItemWidth(-1.0f);
+			ImGui::InputText("##Listen port", g_server_listen_port, sizeof(g_server_listen_port));
 			ImGui::EndChild();
 			if(ImGui::Button("Start server")) {
 			}
