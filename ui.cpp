@@ -218,6 +218,13 @@ void ui_tutorials_menu() {
 		ImGui::BeginChild("Content", ImVec2(0, ImGui::GetContentRegionAvail().y - ImGui::GetFrameHeightWithSpacing()), true);
 		switch (selectedTab) {
 		case 0:
+			ImGui::Text("Not yet implemented");
+			break;
+		case 1:
+			ImGui::Text("Not yet implemented");
+			break;
+		case 2:
+			ImGui::Text("Not yet implemented");
 			break;
 		}
 		ImGui::EndChild();
@@ -259,10 +266,13 @@ void ui_missions_menu() {
 		ImGui::BeginChild("Content", ImVec2(0, ImGui::GetContentRegionAvail().y - ImGui::GetFrameHeightWithSpacing()), true);
 		switch (selectedTab) {
 		case 0:
+			ImGui::Text("Not yet implemented");
 			break;
 		case 1:
+			ImGui::Text("Not yet implemented");
 			break;
 		case 2:
+			ImGui::Text("Not yet implemented");
 			break;
 		}
 		ImGui::EndChild();
