@@ -11,6 +11,7 @@ static bool g_show_help = false;
 static const float g_window_margin = 50.0f;
 
 static char g_username[50] = "";
+static float g_sound_volume = 1.0f;
 
 static void ui_center_window_with_margin(float margin) {
 	ImVec2 display_size = ImGui::GetIO().DisplaySize;
@@ -152,7 +153,9 @@ void ui_settings_menu() {
 
 		ImGui::SameLine();
 
-		ImGui::BeginChild("Content", ImVec2(0, 0), true);
+		ImGui::BeginGroup();
+
+		ImGui::BeginChild("Content", ImVec2(0, ImGui::GetContentRegionAvail().y - ImGui::GetFrameHeightWithSpacing()), true);
 		switch (selectedTab) {
 		case 0:
 			ImGui::InputText("Username", g_username, sizeof(g_username));
@@ -162,9 +165,20 @@ void ui_settings_menu() {
 		case 2:
 			break;
 		case 3:
+			ImGui::SliderFloat("Volume", &g_sound_volume, 0.0f, 1.0f);
 			break;
 		}
 		ImGui::EndChild();
+
+		if(ImGui::Button("Apply")) {
+			g_show_settings = false;
+		}
+		ImGui::SameLine();
+		if(ImGui::Button("Cancel")) {
+			g_show_settings = false;
+		}
+
+		ImGui::EndGroup();
 
 		ImGui::EndPopup();
 	}
