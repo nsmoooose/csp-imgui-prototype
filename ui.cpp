@@ -21,14 +21,17 @@ static void ui_center_window_with_margin(float margin) {
 void ui_theme_gray() {
 	ImGuiStyle& style = ImGui::GetStyle();
 
+	const auto medium = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
+	const auto lighter = ImVec4(0.6f, 0.6f, 0.6f, 1.0f);
+
 	// Set a gray gradient background for the window
 	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.2f, 0.2f, 0.2f, 1.0f); // Darker gray for window background
 	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.3f, 0.3f, 0.3f, 1.0f);  // Slightly lighter gray for the title bar
 	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f); // Active window title
 
 	// Set button gradient colors
-	style.Colors[ImGuiCol_Button] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);      // Medium gray button color
-	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.6f, 0.6f, 0.6f, 1.0f); // Lighter gray when hovered
+	style.Colors[ImGuiCol_Button] = medium;
+	style.Colors[ImGuiCol_ButtonHovered] = lighter;
 	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.7f, 0.7f, 0.7f, 1.0f);  // Even lighter gray when active
 
 	// Set the frame background (for input fields, combo boxes, etc.)
@@ -41,8 +44,8 @@ void ui_theme_gray() {
 
 	// Set scrollbar color
 	style.Colors[ImGuiCol_ScrollbarBg] = ImVec4(0.15f, 0.15f, 0.15f, 1.0f);  // Dark gray for scrollbar background
-	style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);    // Medium gray for the scrollbar handle
-	style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.6f, 0.6f, 0.6f, 1.0f); // Lighter gray on hover
+	style.Colors[ImGuiCol_ScrollbarGrab] = medium;
+	style.Colors[ImGuiCol_ScrollbarGrabHovered] = lighter;
 	style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.7f, 0.7f, 0.7f, 1.0f);  // Active gray scrollbar color
 
 	// Set the border color for windows, buttons, and other widgets
@@ -55,9 +58,9 @@ void ui_theme_gray() {
 	style.Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.4f, 0.4f, 0.4f, 1.0f); // Light gray for selected items
 
 	// Selectable
-    style.Colors[ImGuiCol_Header] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
-    style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.6f, 0.6f, 0.6f, 1.0f);
-    style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.5f, 0.5f, 0.5f, 1.0f);
+    style.Colors[ImGuiCol_Header] = medium;
+    style.Colors[ImGuiCol_HeaderHovered] = lighter;
+    style.Colors[ImGuiCol_HeaderActive] = medium;
 }
 
 void ui_render() {
