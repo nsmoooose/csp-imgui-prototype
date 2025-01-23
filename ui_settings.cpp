@@ -1,6 +1,8 @@
 #include "imgui.h"
 #include "ui.h"
 
+const char* l_languages[] = { "English", "Swedish", "German" };
+
 void ui_settings_menu() {
 	ImGui::OpenPopup("Settings");
 	ui_center_window_with_margin(ui_state.window_margin);
@@ -43,6 +45,16 @@ void ui_settings_menu() {
 			ImGui::Text("Language:");
 			ImGui::SetNextItemWidth(-1.0f);
 			// TODO Listbox
+
+			static int selected_language = 0;
+			if (ImGui::ListBox("##listbox", &selected_language, l_languages, IM_ARRAYSIZE(l_languages))) {
+				switch(selected_language) {
+				case 0: ui_i18n_set_language("en"); break;
+				case 1: ui_i18n_set_language("sv"); break;
+				case 2: ui_i18n_set_language("de"); break;
+				}
+			}
+
 			break;
 		case 2:
 			break;

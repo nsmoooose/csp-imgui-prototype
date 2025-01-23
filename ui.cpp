@@ -20,7 +20,6 @@ ui_state::ui_state() {
 	window_margin = 50.0f;
 }
 
-
 void ui_center_window_with_margin(float margin) {
 	ImVec2 display_size = ImGui::GetIO().DisplaySize;
     ImGui::SetNextWindowPos(ImVec2(margin, margin));

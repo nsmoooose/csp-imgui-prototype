@@ -1,5 +1,8 @@
 #pragma once
 
+#include <string>
+#include <unordered_map>
+
 void ui_render();
 
 void ui_main_menu();
@@ -12,6 +15,10 @@ void ui_help_menu();
 void ui_theme_gray();
 
 void ui_center_window_with_margin(float margin);
+
+void ui_i18n_set_language(const std::string &language);
+const char* ui_i18n_get(const char* key);
+std::unordered_map<std::string, std::string> ui_i18n_load(const std::string& language);
 
 struct ui_state {
 	ui_state();

@@ -26,6 +26,7 @@ SOURCES += imgui_impl_glfw.cpp
 SOURCES += imgui_impl_opengl3.cpp
 SOURCES += ui.cpp
 SOURCES += ui_help
+SOURCES += ui_i18n.cpp
 SOURCES += ui_main_menu.cpp
 SOURCES += ui_missions.cpp
 SOURCES += ui_multiplayer.cpp
