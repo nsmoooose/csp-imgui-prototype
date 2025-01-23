@@ -3,8 +3,8 @@
 
 void ui_settings_menu() {
 	ImGui::OpenPopup("Settings");
-	ui_center_window_with_margin(g_window_margin);
-	if(ImGui::BeginPopupModal("Settings", &g_show_settings, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
+	ui_center_window_with_margin(ui_state.window_margin);
+	if(ImGui::BeginPopupModal("Settings", &ui_state.show_settings, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
 
 		static int selectedTab = 0;
 
@@ -34,7 +34,7 @@ void ui_settings_menu() {
 		case 0:
 			ImGui::Text("Username:");
 			ImGui::SetNextItemWidth(-1.0f);
-			ImGui::InputText("##Username", g_username, sizeof(g_username));
+			ImGui::InputText("##Username", ui_state.username, sizeof(ui_state.username));
 			break;
 		case 1:
 			ImGui::Text("Theme:");
@@ -58,17 +58,17 @@ void ui_settings_menu() {
 		case 4:
 			ImGui::Text("Volume:");
 			ImGui::SetNextItemWidth(-1.0f);
-			ImGui::SliderFloat("##Volume", &g_sound_volume, 0.0f, 1.0f);
+			ImGui::SliderFloat("##Volume", &ui_state.sound_volume, 0.0f, 1.0f);
 			break;
 		}
 		ImGui::EndChild();
 
 		if(ImGui::Button("Apply")) {
-			g_show_settings = false;
+			ui_state.show_settings = false;
 		}
 		ImGui::SameLine();
 		if(ImGui::Button("Cancel")) {
-			g_show_settings = false;
+			ui_state.show_settings = false;
 		}
 
 		ImGui::EndGroup();

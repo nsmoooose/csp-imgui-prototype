@@ -2,19 +2,24 @@
 #include "ui.h"
 #include "imgui.h"
 
-bool g_show_main = true;
-bool g_show_settings = false;
-bool g_show_tutorials = false;
-bool g_show_missions = false;
-bool g_show_multiplayer = false;
-bool g_show_help = false;
+struct ui_state ui_state;
 
-const float g_window_margin = 50.0f;
+ui_state::ui_state() {
+	show_main = true;
+	show_settings = false;
+	show_tutorials = false;
+	show_missions = false;
+	show_multiplayer = false;
+	show_help = false;
 
-char g_username[50] = "";
-float g_sound_volume = 1.0f;
-char g_server_listen_ip[30] = "0::0";
-char g_server_listen_port[30] = "3160";
+	username[0] = '\0';
+	sound_volume = 1.0f;
+	strcpy(server_listen_ip, "0::0");
+	strcpy(server_listen_port, "3160");
+
+	window_margin = 50.0f;
+}
+
 
 void ui_center_window_with_margin(float margin) {
 	ImVec2 display_size = ImGui::GetIO().DisplaySize;
@@ -28,19 +33,19 @@ void ui_render() {
 	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(10.0f, 10.0f));
 
 	ui_main_menu();
-	if(g_show_settings) {
+	if(ui_state.show_settings) {
 		ui_settings_menu();
 	}
-	if(g_show_tutorials) {
+	if(ui_state.show_tutorials) {
 		ui_tutorials_menu();
 	}
-	if(g_show_missions) {
+	if(ui_state.show_missions) {
 		ui_missions_menu();
 	}
-	if(g_show_multiplayer) {
+	if(ui_state.show_multiplayer) {
 		ui_multiplayer_menu();
 	}
-	if(g_show_help) {
+	if(ui_state.show_help) {
 		ui_help_menu();
 	}
 

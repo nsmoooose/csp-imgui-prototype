@@ -3,8 +3,8 @@
 
 void ui_missions_menu() {
 	ImGui::OpenPopup("Missions");
-	ui_center_window_with_margin(g_window_margin);
-	if(ImGui::BeginPopupModal("Missions", &g_show_missions, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
+	ui_center_window_with_margin(ui_state.window_margin);
+	if(ImGui::BeginPopupModal("Missions", &ui_state.show_missions, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
 		static int selectedTab = 0; // Track the selected tab
 
 		const char* tabs[] = {

@@ -80,8 +80,8 @@ static const char g_help_f16_first[] = {
 
 void ui_help_menu() {
 	ImGui::OpenPopup("Help");
-	ui_center_window_with_margin(g_window_margin);
-	if(ImGui::BeginPopupModal("Help", &g_show_help, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
+	ui_center_window_with_margin(ui_state.window_margin);
+	if(ImGui::BeginPopupModal("Help", &ui_state.show_help, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
 		static int selectedTab = 0; // Track the selected tab
 
 		const char* tabs[] = {

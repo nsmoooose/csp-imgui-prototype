@@ -109,7 +109,7 @@ int main(int, char**)
     ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.0f, 1.00f);
 
     // Main loop
-    while (!glfwWindowShouldClose(window) && g_show_main)
+    while (!glfwWindowShouldClose(window) && ui_state.show_main)
     {
         // Poll and handle events (inputs, window resize, etc.)
         // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.

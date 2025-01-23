@@ -3,8 +3,8 @@
 
 void ui_tutorials_menu() {
 	ImGui::OpenPopup("Tutorials");
-	ui_center_window_with_margin(g_window_margin);
-	if(ImGui::BeginPopupModal("Tutorials", &g_show_tutorials, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
+	ui_center_window_with_margin(ui_state.window_margin);
+	if(ImGui::BeginPopupModal("Tutorials", &ui_state.show_tutorials, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
 		static int selectedTab = 0; // Track the selected tab
 
 		const char* tabs[] = {

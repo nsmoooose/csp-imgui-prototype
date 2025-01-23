@@ -4,8 +4,8 @@
 
 void ui_multiplayer_menu() {
 	ImGui::OpenPopup("Multiplayer");
-	ui_center_window_with_margin(g_window_margin);
-	if(ImGui::BeginPopupModal("Multiplayer", &g_show_multiplayer, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
+	ui_center_window_with_margin(ui_state.window_margin);
+	if(ImGui::BeginPopupModal("Multiplayer", &ui_state.show_multiplayer, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
 		static int selectedTab = 0;
 
 		const char* tabs[] = {
@@ -64,11 +64,11 @@ void ui_multiplayer_menu() {
 		case 1:
 			ImGui::Text("Listen address:");
 			ImGui::SetNextItemWidth(-1.0f);
-			ImGui::InputText("##Listen address", g_server_listen_ip, sizeof(g_server_listen_ip));
+			ImGui::InputText("##Listen address", ui_state.server_listen_ip, sizeof(ui_state.server_listen_ip));
 
 			ImGui::Text("Listen port:");
 			ImGui::SetNextItemWidth(-1.0f);
-			ImGui::InputText("##Listen port", g_server_listen_port, sizeof(g_server_listen_port));
+			ImGui::InputText("##Listen port", ui_state.server_listen_port, sizeof(ui_state.server_listen_port));
 			ImGui::EndChild();
 			if(ImGui::Button("Start server")) {
 			}
