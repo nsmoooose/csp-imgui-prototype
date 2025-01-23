@@ -2,7 +2,7 @@
 #include "ui.h"
 
 void ui_main_menu() {
-	ImVec2 window_size = {200, 400};
+	ImVec2 window_size = {250, 400};
 	ImGui::SetNextWindowSize(window_size);
 	ImGui::SetNextWindowPos(ImVec2(50, 50));
 	ImGui::Begin(ui_i18n_get("csp"), &ui_state.show_main,
