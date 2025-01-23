@@ -11,11 +11,11 @@ void ui_settings_menu() {
 		static int selectedTab = 0;
 
 		const char* tabs[] = {
-			"Profile",
-			"User interface",
-			"Controls",
-			"Display",
-			"Sound",
+			ui_i18n_get("Profile"),
+			ui_i18n_get("User interface"),
+			ui_i18n_get("Controls"),
+			ui_i18n_get("Display"),
+			ui_i18n_get("Sound"),
 		};
 		const int tabCount = IM_ARRAYSIZE(tabs);
 
@@ -31,18 +31,18 @@ void ui_settings_menu() {
 
 		ImGui::BeginGroup();
 
-		ImGui::BeginChild("Content", ImVec2(0, ImGui::GetContentRegionAvail().y - ImGui::GetFrameHeightWithSpacing()), true);
+		ImGui::BeginChild(ui_i18n_get("Content"), ImVec2(0, ImGui::GetContentRegionAvail().y - ImGui::GetFrameHeightWithSpacing()), true);
 		switch (selectedTab) {
 		case 0:
-			ImGui::Text("Username:");
+			ImGui::Text(ui_i18n_get("Username:"));
 			ImGui::SetNextItemWidth(-1.0f);
 			ImGui::InputText("##Username", ui_state.username, sizeof(ui_state.username));
 			break;
 		case 1:
-			ImGui::Text("Theme:");
+			ImGui::Text(ui_i18n_get("Theme:"));
 			ImGui::SetNextItemWidth(-1.0f);
 			// TODO Listbox
-			ImGui::Text("Language:");
+			ImGui::Text(ui_i18n_get("Language:"));
 			ImGui::SetNextItemWidth(-1.0f);
 			// TODO Listbox
 
@@ -59,27 +59,27 @@ void ui_settings_menu() {
 		case 2:
 			break;
 		case 3:
-			ImGui::Text("Fullscreen:");
+			ImGui::Text(ui_i18n_get("Fullscreen:"));
 			ImGui::SetNextItemWidth(-1.0f);
 			// TODO Listbox
 
-			ImGui::Text("Window size:");
+			ImGui::Text(ui_i18n_get("Window size:"));
 			ImGui::SetNextItemWidth(-1.0f);
 			// TODO Listbox
 			break;
 		case 4:
-			ImGui::Text("Volume:");
+			ImGui::Text(ui_i18n_get("Volume:"));
 			ImGui::SetNextItemWidth(-1.0f);
 			ImGui::SliderFloat("##Volume", &ui_state.sound_volume, 0.0f, 1.0f);
 			break;
 		}
 		ImGui::EndChild();
 
-		if(ImGui::Button("Apply")) {
+		if(ImGui::Button(ui_i18n_get("Apply"))) {
 			ui_state.show_settings = false;
 		}
 		ImGui::SameLine();
-		if(ImGui::Button("Cancel")) {
+		if(ImGui::Button(ui_i18n_get("Cancel"))) {
 			ui_state.show_settings = false;
 		}
 

@@ -2,9 +2,9 @@
 #include "ui.h"
 
 void ui_missions_menu() {
-	ImGui::OpenPopup("Missions");
+	ImGui::OpenPopup(ui_i18n_get("Missions"));
 	ui_center_window_with_margin(ui_state.window_margin);
-	if(ImGui::BeginPopupModal("Missions", &ui_state.show_missions, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
+	if(ImGui::BeginPopupModal(ui_i18n_get("Missions"), &ui_state.show_missions, ImGuiWindowFlags_NoResize|ImGuiWindowFlags_NoMove|ImGuiWindowFlags_NoCollapse)) {
 		static int selectedTab = 0; // Track the selected tab
 
 		const char* tabs[] = {
@@ -26,7 +26,7 @@ void ui_missions_menu() {
 
 		ImGui::BeginGroup();
 
-		ImGui::BeginChild("Content", ImVec2(0, ImGui::GetContentRegionAvail().y - ImGui::GetFrameHeightWithSpacing()), true);
+		ImGui::BeginChild(ui_i18n_get("Content"), ImVec2(0, ImGui::GetContentRegionAvail().y - ImGui::GetFrameHeightWithSpacing()), true);
 		switch (selectedTab) {
 		case 0:
 			ImGui::Text("Not yet implemented");
@@ -40,7 +40,7 @@ void ui_missions_menu() {
 		}
 		ImGui::EndChild();
 
-		if(ImGui::Button("Start")) {
+		if(ImGui::Button(ui_i18n_get("Start"))) {
 		}
 
 		ImGui::EndGroup();
