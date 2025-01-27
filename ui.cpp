@@ -6,6 +6,7 @@ struct ui_state ui_state;
 
 ui_state::ui_state() {
 	show_main = true;
+	show_pause = true;
 	show_settings = false;
 	show_tutorials = false;
 	show_missions = false;
@@ -18,6 +19,12 @@ ui_state::ui_state() {
 	strcpy(server_listen_port, "3160");
 
 	window_margin = 50.0f;
+}
+
+void ui_center_window(const ImVec2 &size) {
+	ImVec2 display_size = ImGui::GetIO().DisplaySize;
+    ImGui::SetNextWindowPos(ImVec2(display_size.x / 2 - size.x / 2, display_size.y / 2 - size.y));
+    ImGui::SetNextWindowSize(size);
 }
 
 void ui_center_window_with_margin(float margin) {

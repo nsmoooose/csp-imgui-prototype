@@ -29,6 +29,7 @@ SOURCES += ui_help
 SOURCES += ui_i18n.cpp
 SOURCES += ui_missions.cpp
 SOURCES += ui_multiplayer.cpp
+SOURCES += ui_screen_pause.cpp
 SOURCES += ui_screen_main.cpp
 SOURCES += ui_screen_selector.cpp
 SOURCES += ui_settings.cpp

@@ -2,6 +2,7 @@
 
 #include <string>
 #include <unordered_map>
+#include "imgui.h"
 
 void ui_render();
 
@@ -13,9 +14,11 @@ void ui_help_menu();
 
 void ui_theme_gray();
 
+void ui_center_window(const ImVec2 &size);
 void ui_center_window_with_margin(float margin);
 
 void ui_screen_selector();
+void ui_screen_pause();
 void ui_screen_main();
 
 void ui_i18n_set_language(const std::string &language);
@@ -26,6 +29,7 @@ struct ui_state {
 	ui_state();
 
 	bool show_main;
+	bool show_pause;
 	bool show_settings;
 	bool show_tutorials;
 	bool show_missions;

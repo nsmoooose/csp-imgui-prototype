@@ -18,6 +18,7 @@ void ui_screen_selector() {
 	}
 
 	if(ImGui::Button("Pause", button_size)) {
+		ui_screen_current = ui_screen_pause;
 	}
 
 	if(ImGui::Button("Map", button_size)) {
