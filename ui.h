@@ -18,7 +18,7 @@ void ui_center_window(const ImVec2 &size);
 void ui_center_window_with_margin(float margin);
 
 void ui_screen_selector();
-void ui_screen_pause();
+void ui_screen_game();
 void ui_screen_main();
 
 void ui_i18n_set_language(const std::string &language);

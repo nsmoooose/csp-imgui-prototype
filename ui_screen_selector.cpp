@@ -18,7 +18,8 @@ void ui_screen_selector() {
 	}
 
 	if(ImGui::Button("Pause", button_size)) {
-		ui_screen_current = ui_screen_pause;
+		ui_state.show_pause = true;
+		ui_screen_current = ui_screen_game;
 	}
 
 	if(ImGui::Button("Map", button_size)) {

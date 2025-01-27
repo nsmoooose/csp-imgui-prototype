@@ -12,6 +12,8 @@ static void ui_main_menu() {
 
 	ImVec2 button_size = { ImGui::GetContentRegionAvail().x, 0 };
 	if (ImGui::Button(ui_i18n_get("instant_action"), button_size)) {
+		ui_state.show_pause = true;
+		ui_screen_current = ui_screen_game;
 	}
 
 	if(ImGui::Button(ui_i18n_get("tutorials"), button_size)) {

@@ -25,6 +25,7 @@ static void ui_pause() {
     ImGui::SetCursorPosX(ImGui::GetCursorPosX() + offsetX);
 
     if (ImGui::Button("Resume", buttonSize)) {
+		ui_state.show_pause = false;
     }
 
     ImGui::SameLine();
@@ -35,7 +36,7 @@ static void ui_pause() {
 	ImGui::End();
 }
 
-void ui_screen_pause() {
+void ui_screen_game() {
 	if(ui_state.show_pause) {
 		ui_pause_toolbar();
 		ui_pause();
