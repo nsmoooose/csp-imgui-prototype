@@ -108,6 +108,9 @@ int main(int, char**)
     // Our state
     ImVec4 clear_color = ImVec4(0.0f, 0.0f, 0.0f, 1.00f);
 
+	ui_screen_current = ui_screen_selector;
+
+
 	ui_i18n_set_language("en");
 
     // Main loop

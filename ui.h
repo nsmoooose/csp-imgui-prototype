@@ -5,7 +5,6 @@
 
 void ui_render();
 
-void ui_main_menu();
 void ui_settings_menu();
 void ui_tutorials_menu();
 void ui_missions_menu();
@@ -15,6 +14,9 @@ void ui_help_menu();
 void ui_theme_gray();
 
 void ui_center_window_with_margin(float margin);
+
+void ui_screen_selector();
+void ui_screen_main();
 
 void ui_i18n_set_language(const std::string &language);
 const char* ui_i18n_get(const char* key);
@@ -39,6 +41,8 @@ struct ui_state {
 };
 
 extern struct ui_state ui_state;
+
+extern void (*ui_screen_current)();
 
 extern char g_username[50];
 extern float g_sound_volume;

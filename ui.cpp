@@ -31,22 +31,7 @@ void ui_render() {
 
 	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(10.0f, 10.0f));
 
-	ui_main_menu();
-	if(ui_state.show_settings) {
-		ui_settings_menu();
-	}
-	if(ui_state.show_tutorials) {
-		ui_tutorials_menu();
-	}
-	if(ui_state.show_missions) {
-		ui_missions_menu();
-	}
-	if(ui_state.show_multiplayer) {
-		ui_multiplayer_menu();
-	}
-	if(ui_state.show_help) {
-		ui_help_menu();
-	}
+	ui_screen_current();
 
 	ImGui::PopStyleVar();
 }
